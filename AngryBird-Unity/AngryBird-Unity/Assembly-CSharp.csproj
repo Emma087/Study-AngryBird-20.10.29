@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bird.cs" />
+     <Compile Include="Assets\Scripts\Pig.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Emma/Documents/Study-AngryBird-20.10.29/AngryBird-Unity/AngryBird-Unity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

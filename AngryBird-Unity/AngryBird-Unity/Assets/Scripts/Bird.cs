@@ -1,29 +1,35 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
 
 public class Bird : MonoBehaviour
 {
     private bool isClick = false;
-    public Transform springOriginPosition; //弹簧固定头的位置所在
+    public Transform springOriginPosition; //弹簧固定头的位置所在，同时也是右端画线开始的位置
     public float maxDistance; //弹簧能拉动的最大的距离
     private SpringJoint2D sp;
     private Rigidbody2D rg;
 
-    private void Awake()//延迟运行的代码
+    public LineRenderer lineRight;
+    public LineRenderer lineLeft;
+    public Transform printLeftLineOriginPosition; //左端画线开始的位置
+    private Vector3 birdLengh;
+    private Collider2D birdCollider;
+
+    private void Awake() //延迟运行的代码
     {
         sp = GetComponent<SpringJoint2D>();
         rg = GetComponent<Rigidbody2D>();
-        
+        //birdLengh = GetComponent(CircleCollider2D).position
+        birdCollider = GetComponent<Collider2D>();
+        birdLengh = birdCollider.bounds.size;//获得的是 Collider 的尺寸，应该是指直径
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     private void OnMouseDown() //鼠标按下
@@ -36,8 +42,20 @@ public class Bird : MonoBehaviour
     {
         isClick = false;
         rg.isKinematic = false;
-        Invoke("Fly",0.1f);
+        Invoke("Fly", 0.1f);
+    }
 
+    void Fly() //让小鸟的弹簧组件失效，实现飞出去的运动状态
+    {
+        sp.enabled = false;
+    }
+
+    void PrintLine()
+    {
+        lineRight.SetPosition(0, springOriginPosition.position); //画线第一个点
+        lineRight.SetPosition(1, transform.position- birdLengh / 3); //画线第二个点
+        lineLeft.SetPosition(0, printLeftLineOriginPosition.position);
+        lineLeft.SetPosition(1, transform.position - birdLengh / 3);
     }
 
     // Update is called once per frame
@@ -53,11 +71,8 @@ public class Bird : MonoBehaviour
                 pos *= maxDistance;
                 transform.position = pos + springOriginPosition.position;
             }
-        }
-    }
 
-    void Fly()
-    {
-        sp.enabled = false;
+            PrintLine();
+        }
     }
 }
