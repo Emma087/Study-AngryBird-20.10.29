@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1505530747840122021}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +35,7 @@ Transform:
 --- !u!1 &1505530748746521121
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -44,7 +43,7 @@ GameObject:
   - component: {fileID: 1505530748746521122}
   - component: {fileID: 1505530748746521148}
   - component: {fileID: 1505530748746521123}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,8 +53,7 @@ GameObject:
 --- !u!4 &1505530748746521122
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 400002, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505530748746521121}
@@ -69,8 +67,7 @@ Transform:
 --- !u!198 &1505530748746521148
 ParticleSystem:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 19800002, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505530748746521121}
@@ -4769,8 +4766,7 @@ ParticleSystem:
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 19900002, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505530748746521121}
@@ -4804,8 +4800,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 957853831
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 3
   m_SortMode: 0
@@ -4833,8 +4829,7 @@ ParticleSystemRenderer:
 --- !u!1 &1505530749054646809
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
@@ -4842,7 +4837,7 @@ GameObject:
   - component: {fileID: 1505530749054646810}
   - component: {fileID: 1505530749054646804}
   - component: {fileID: 1505530749054646811}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: sub2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4852,8 +4847,7 @@ GameObject:
 --- !u!4 &1505530749054646810
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505530749054646809}
@@ -4867,8 +4861,7 @@ Transform:
 --- !u!198 &1505530749054646804
 ParticleSystem:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505530749054646809}
@@ -9567,8 +9560,7 @@ ParticleSystem:
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 19900000, guid: 88931319fa81cb74f9dea60798a96bef,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505530749054646809}
@@ -9602,8 +9594,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 957853831
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 3
   m_SortMode: 0

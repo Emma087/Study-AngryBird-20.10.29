@@ -23,6 +23,7 @@ public class Bird : MonoBehaviour
 
     public GameObject boomBird;
     private Trail myTrail;
+    private bool canMove = true;
 
     private void Awake() //延迟运行的代码
     {
@@ -42,17 +43,24 @@ public class Bird : MonoBehaviour
 
     private void OnMouseDown() //鼠标按下
     {
-        isClick = true;
-        rg.isKinematic = true;
+        if (canMove)
+        {
+            isClick = true;
+            rg.isKinematic = true;
+        }
     }
 
     private void OnMouseUp() //鼠标抬起
     {
-        isClick = false;
-        rg.isKinematic = false;
-        Invoke("Fly", 0.1f);
-        lineRight.enabled = false; //鼠标抬起的时候，画线组件失活
-        lineLeft.enabled = false;
+        if (canMove)
+        {
+            isClick = false;
+            rg.isKinematic = false;
+            Invoke("Fly", 0.1f);
+            lineRight.enabled = false; //鼠标抬起的时候，画线组件失活
+            lineLeft.enabled = false;
+            canMove = false;
+        }
     }
 
     void Fly() //让小鸟的弹簧组件失效，实现飞出去的运动状态
