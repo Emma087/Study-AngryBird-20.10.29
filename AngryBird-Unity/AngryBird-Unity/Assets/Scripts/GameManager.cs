@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public List<Pig> pig;
     public static GameManager _instance;
     private Vector3 firstBirdOriginPosition;
+    public GameObject win;
+    public GameObject lose;
 
     private void Awake()
     {
@@ -46,6 +48,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ShowStars()
+    {
+        
+    }
+
     /// <summary>
     /// 判定游戏是否胜出的逻辑
     /// </summary>
@@ -60,12 +67,14 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                //shule
+                //输了，播放输了动画
+                lose.SetActive(true);
             }
         }
         else
         {
-            //yingle
+            //赢了，播放赢了动画
+            win.SetActive(true);
         }
     }
 }
