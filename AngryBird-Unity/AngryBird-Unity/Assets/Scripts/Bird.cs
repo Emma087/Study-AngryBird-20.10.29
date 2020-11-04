@@ -13,7 +13,7 @@ public class Bird : MonoBehaviour
     [HideInInspector] // 加上这个 sp 虽然是 public 修饰，但是 Inspector窗口不显示
     public SpringJoint2D sp;
 
-    private Rigidbody2D rg;
+    protected Rigidbody2D rg; //受保护类型，子类能看见，引擎看不见
 
     public LineRenderer lineRight;
     public LineRenderer lineLeft;
@@ -22,9 +22,16 @@ public class Bird : MonoBehaviour
     private Collider2D birdCollider;
 
     public GameObject boomBird;
-    private Trail myTrail;
+    protected Trail myTrail;
     private bool canMove = true;
-
+    public float smoothLerpValue;
+    public AudioClip selectBirdClickMusic;
+    public AudioClip birdFlyingMusic;
+    private bool isFly = false; //判定是否已经飞起来的布尔值
+    public Sprite hurt; // 小鸟受伤图片
+    protected SpriteRenderer render;
+    
+    
     private void Awake() //延迟运行的代码
     {
         sp = GetComponent<SpringJoint2D>();
@@ -32,19 +39,16 @@ public class Bird : MonoBehaviour
         //birdLengh = GetComponent(CircleCollider2D).position
         birdCollider = GetComponent<Collider2D>();
         birdLengh = birdCollider.bounds.size; //获得的是 Collider 的尺寸，应该是指直径
-
         myTrail = GetComponent<Trail>();
+        render = GetComponent<SpriteRenderer>();
     }
+    
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    private void OnMouseDown() //鼠标按下
+    private void OnMouseDown() //鼠标按下，鼠标正在选择中小鸟，正在点击着那一只鸟
     {
         if (canMove)
         {
+            AudioPlay(selectBirdClickMusic);
             isClick = true;
             rg.isKinematic = true;
         }
@@ -65,9 +69,11 @@ public class Bird : MonoBehaviour
 
     void Fly() //让小鸟的弹簧组件失效，实现飞出去的运动状态
     {
+        isFly = true;
+        AudioPlay(birdFlyingMusic);
         myTrail.TrailsStart();
         sp.enabled = false;
-        Invoke("CurrentBirdDeath", 5);
+        Invoke("NextBirdReadyAndCurrentBirdDeath", 2);//小鸟几秒以后删除
     }
 
     void PrintLine()
@@ -85,7 +91,7 @@ public class Bird : MonoBehaviour
     /// <summary>
     /// 当前小鸟，在 List中删除，自身对象删除，产生一个爆炸特效
     /// </summary>
-    void CurrentBirdDeath()
+    protected virtual void NextBirdReadyAndCurrentBirdDeath()
     {
         GameManager._instance.birds.Remove(this);
         Destroy(gameObject);
@@ -112,10 +118,47 @@ public class Bird : MonoBehaviour
 
             PrintLine();
         }
+
+        //相机跟随
+        float birdPositionX = transform.position.x;
+        Vector3 limitCameraPosition =
+            new Vector3(Mathf.Clamp(birdPositionX, 0, 15), Camera.main.transform.position.y,
+                Camera.main.transform.position.z);
+        Camera.main.transform.position =
+            Vector3.Lerp(Camera.main.transform.position, limitCameraPosition,
+                smoothLerpValue * Time.deltaTime); //差值运算，得出一个平滑的效果
+
+        if (isFly)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                ShowSkillYellowBirdAccelerate();
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        isFly = false;
         myTrail.TrailsClear();
+    }
+
+    public void AudioPlay(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, transform.position); 
+        //这个函数，在世界空间指定的位置播放 AutioClip，参数 音频信息，位置，注意这里的位置写的是物体的位置，因为是 2D游戏
+    }
+
+    /// <summary>
+    /// 小黄鸟专属，在空中加速度
+    /// </summary>
+    protected virtual void ShowSkillYellowBirdAccelerate()
+    {
+        isFly = false;
+    }
+
+    public void Hurt()
+    {
+        render.sprite = hurt;
     }
 }

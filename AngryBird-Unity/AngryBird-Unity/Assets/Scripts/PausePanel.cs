@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausePanel : MonoBehaviour
 {
@@ -15,7 +16,13 @@ public class PausePanel : MonoBehaviour
 
     public void Retry()
     {
-        
+        Time.timeScale = 1;
+        SceneManager.LoadScene(2);
+    }
+    public void HomeMune()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
     }
 
     /// <summary>
@@ -27,11 +34,6 @@ public class PausePanel : MonoBehaviour
        // 2，暂停整个游戏画面
         anim.SetBool("IsPause",true);
         pauseButton.SetActive(false); // 暂停游戏画面的时候，隐藏掉游戏画面中暂停的那个按钮
-    }
-
-    public void HomeMune()
-    {
-        
     }
 
     /// <summary>

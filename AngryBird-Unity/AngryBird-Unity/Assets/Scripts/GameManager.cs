@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private Vector3 firstBirdOriginPosition;
     public GameObject win;
     public GameObject lose;
-    public GameObject[] Stars;
+    public GameObject[] stars;
 
     private void Awake()
     {
@@ -82,12 +82,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine("show");
     }
 
-    IEnumerator show()
+    IEnumerator show() //协程显示星星
     {
         for (int i = 0; i < birds.Count + 1; i++)
         {
+            if (i >= stars.Length)
+            {
+                break;
+            }
             yield return new WaitForSeconds(0.2f);
-            Stars[i].SetActive(true);
+            stars[i].SetActive(true);
         }
     }
 
