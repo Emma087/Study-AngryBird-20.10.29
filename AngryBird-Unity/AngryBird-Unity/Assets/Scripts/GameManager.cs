@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
     public GameObject[] stars;
-
+    private int starsLevelNumber = 0; //12关的单关星星数量
+        
     private void Awake()
     {
         _instance = this;
@@ -84,15 +85,17 @@ public class GameManager : MonoBehaviour
 
     IEnumerator show() //协程显示星星
     {
-        for (int i = 0; i < birds.Count + 1; i++)
+        for (starsLevelNumber = 0; starsLevelNumber < birds.Count + 1; starsLevelNumber++)
         {
-            if (i >= stars.Length)
+            Debug.Log(starsLevelNumber);
+            if (starsLevelNumber >= stars.Length)
             {
                 break;
             }
             yield return new WaitForSeconds(0.2f);
-            stars[i].SetActive(true);
+            stars[starsLevelNumber].SetActive(true);
         }
+
     }
 
     public void Replay()
