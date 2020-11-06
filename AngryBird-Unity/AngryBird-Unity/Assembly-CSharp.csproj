@@ -67,12 +67,14 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GreenBird.cs" />
      <Compile Include="Assets\Scripts\LevelSelect.cs" />
+     <Compile Include="Assets\Scripts\LoadLevel.cs" />
      <Compile Include="Assets\Scripts\MapSelect.cs" />
      <Compile Include="Assets\Scripts\PausePanel.cs" />
      <Compile Include="Assets\Scripts\Pig.cs" />
      <Compile Include="Assets\Scripts\Trail.cs" />
      <Compile Include="Assets\Scripts\Win.cs" />
      <Compile Include="Assets\Scripts\YellowBird.cs" />
+     <Compile Include="Assets\aaa.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Emma/Documents/Study-AngryBird-20.10.29/AngryBird-Unity/AngryBird-Unity/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

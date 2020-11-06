@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapSelect : MonoBehaviour
 {
-    public int starsNumber; //星星的数量，已经获得完的星星数量
+    public int starsNumber; //星星的数量，已经获得完的星星数量，每一个单关星星加在一起的总数
     private bool isSelect = false; //是否已经解锁，当前是否可以点击
     public GameObject locks; //游戏中，星星不够的那把锁
     public GameObject stars; //游戏中，锁掉了以后显示的星星
@@ -14,16 +14,16 @@ public class MapSelect : MonoBehaviour
     
     private void Start()
     {
-        if (PlayerPrefs.GetInt("tutaoNumber", 0) >= starsNumber)
+        if (PlayerPrefs.GetInt("totalNumber", 0) >= starsNumber)
         { //PlayerPrefs 这里老师讲的是，这是一个键值对，用来存储 星星总数量
             isSelect = true;
         }
 
-        if (isSelect)
+        if (isSelect)//符合条件点击
         {
-            locks.SetActive(false);
-            stars.SetActive(true);
-            // text显示还没写
+            locks.SetActive(false); //锁头隐藏
+            stars.SetActive(true); //星星显示出来
+            // map>star>text 的星星数量显示还没写
         }
     }
 

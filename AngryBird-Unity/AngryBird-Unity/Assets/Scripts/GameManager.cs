@@ -14,8 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public GameObject lose;
     public GameObject[] stars;
-    private int starsLevelNumber = 0; //12关的单关星星数量
-        
+    private int starsLevelNumber = 0; //12关的每个单关，的星星数量
+    private int totalLevelNumber = 12; //每一个地图，对应了 12个单个小关卡
+
     private void Awake()
     {
         _instance = this;
@@ -92,19 +93,37 @@ public class GameManager : MonoBehaviour
             {
                 break;
             }
+
             yield return new WaitForSeconds(0.2f);
             stars[starsLevelNumber].SetActive(true);
         }
 
+        Debug.Log(starsLevelNumber);
     }
 
     public void Replay()
     {
+        SaveDate();
         SceneManager.LoadScene(2);
     }
 
     public void HomeMune()
     {
+        SaveDate();
         SceneManager.LoadScene(1);
+    }
+
+    public void SaveDate() //专门存储 12单关的星星数量的
+    {
+        if (starsLevelNumber > PlayerPrefs.GetInt(PlayerPrefs.GetString("NowLevel")))
+            //如果重玩得到的星星比键值对存的上一次的高，再存，否则就不存
+            PlayerPrefs.SetInt(PlayerPrefs.GetString("NowLevel"), starsLevelNumber);
+        int sum = 0; //临时的变量，用来存储关卡中所有的星星总数
+        for (int i = 1; i <= totalLevelNumber; i++)
+        {
+            sum += PlayerPrefs.GetInt(PlayerPrefs.GetString("Level" + i.ToString()));
+        }
+
+        PlayerPrefs.SetInt("totalNumber", sum); //把 sum 传给键值对数组
     }
 }
