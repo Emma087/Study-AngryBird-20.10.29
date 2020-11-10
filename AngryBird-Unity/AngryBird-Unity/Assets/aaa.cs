@@ -10,7 +10,7 @@ public class aaa : MonoBehaviour
         int count = transform.childCount;
         for (int i = 0; i < count; i++)
         {
-            transform.GetChild(i).name = (i + 1).ToString();
+            transform.GetChild(i).name = (24 + i + 1).ToString();
         }
     }
 }

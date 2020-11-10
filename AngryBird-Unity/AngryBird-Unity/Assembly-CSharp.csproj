@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\GreenBird.cs" />
      <Compile Include="Assets\Scripts\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\LoadLevel.cs" />
+     <Compile Include="Assets\Scripts\LoadLevelAsyns.cs" />
      <Compile Include="Assets\Scripts\MapSelect.cs" />
      <Compile Include="Assets\Scripts\PausePanel.cs" />
      <Compile Include="Assets\Scripts\Pig.cs" />

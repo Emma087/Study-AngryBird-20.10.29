@@ -43,11 +43,13 @@ public class GameManager : MonoBehaviour
                 birds[0].transform.position = firstBirdOriginPosition;
                 birds[i].enabled = true;
                 birds[i].sp.enabled = true;
+                birds[i].canMove = true;
             }
             else
             {
                 birds[i].enabled = false;
                 birds[i].sp.enabled = false;
+                birds[i].canMove = false;
             }
         }
     }
@@ -121,7 +123,7 @@ public class GameManager : MonoBehaviour
         int sum = 0; //临时的变量，用来存储关卡中所有的星星总数
         for (int i = 1; i <= totalLevelNumber; i++)
         {
-            sum += PlayerPrefs.GetInt(PlayerPrefs.GetString("Level" + i.ToString()));
+            sum += PlayerPrefs.GetInt("Level" + i.ToString());
         }
 
         PlayerPrefs.SetInt("totalNumber", sum); //把 sum 传给键值对数组

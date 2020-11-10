@@ -9,6 +9,7 @@ public class PausePanel : MonoBehaviour
     private Animator anim;
     public GameObject pauseButton;
 
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -23,6 +24,7 @@ public class PausePanel : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
+
     }
 
     /// <summary>
@@ -34,6 +36,13 @@ public class PausePanel : MonoBehaviour
        // 2，暂停整个游戏画面
         anim.SetBool("IsPause",true);
         pauseButton.SetActive(false); // 暂停游戏画面的时候，隐藏掉游戏画面中暂停的那个按钮
+        if (GameManager._instance.birds.Count > 0) //如果场景中还有小鸟
+        {
+            if (GameManager._instance.birds[0].isReLeaved == false) //如果没有松开鼠标
+            {
+                GameManager._instance.birds[0].canMove = false; //则让小鸟不能被点击
+            }
+        }
     }
 
     /// <summary>
@@ -44,6 +53,13 @@ public class PausePanel : MonoBehaviour
         // 1,播放 Resume 动画
         Time.timeScale = 1;
         anim.SetBool("IsPause",false);
+        if (GameManager._instance.birds.Count > 0) //如果场景中还有小鸟
+        {
+            if (GameManager._instance.birds[0].isReLeaved == false) //如果没有松开鼠标
+            {
+                GameManager._instance.birds[0].canMove = true; //则让小鸟恢复，可以被点击状态
+            }
+        }
     }
 
     /// <summary>

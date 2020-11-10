@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.EventSystems;
+
 
 public class Bird : MonoBehaviour
 {
@@ -23,11 +25,15 @@ public class Bird : MonoBehaviour
 
     public GameObject boomBird;
     protected Trail myTrail;
-    private bool canMove = true;
+    [HideInInspector]
+    public bool canMove = false; //限制每一只鸟，一上来就可以被点击的状态
     public float smoothLerpValue;
     public AudioClip selectBirdClickMusic;
     public AudioClip birdFlyingMusic;
     private bool isFly = false; //判定是否已经飞起来的布尔值
+    [HideInInspector]
+    public bool isReLeaved = false; //是否松开了鼠标，是否释放了小鸟
+    
     public Sprite hurt; // 小鸟受伤图片
     protected SpriteRenderer render;
     
@@ -69,6 +75,7 @@ public class Bird : MonoBehaviour
 
     void Fly() //让小鸟的弹簧组件失效，实现飞出去的运动状态
     {
+        isReLeaved = true;
         isFly = true;
         AudioPlay(birdFlyingMusic);
         myTrail.TrailsStart();
@@ -102,6 +109,11 @@ public class Bird : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) //实时监测是否点击了 UI界面
+        {
+            return; //如果点击了UI界面，返回出这个方法，以下的内容不执行了
+        }
+
         if (isClick)
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
